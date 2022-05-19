@@ -20,8 +20,12 @@ export class PaisService {
     const url = `${this.BASE_URL}/capital/${termino}`;
     return this.http.get<Country[]>(url);
   }
+  buscarRegion(termino: string): Observable<Country[]> {
+    const url = `${this.BASE_URL}/region/${termino}`;
+    return this.http.get<Country[]>(url);
+  }
 
-  getPaisPorId(id:string):Observable<Country>{
+  getPaisPorId(id: string): Observable<Country> {
     const url = `${this.BASE_URL}/alpha/${id}`;
     return this.http.get<Country>(url);
   }
