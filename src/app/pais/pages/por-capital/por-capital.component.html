@@ -2,11 +2,18 @@
 <hr />
 <div class="row">
   <div class="col">
-    <app-pais-input (onEnter)="buscar($event)" (onDebounce)="sugerencias($event)" placeholder="Buscar capital..."></app-pais-input>
+    <app-pais-input
+      (onEnter)="buscar($event)"
+      (onDebounce)="sugerencias($event)"
+      placeholder="Buscar capital..."
+    ></app-pais-input>
   </div>
 </div>
 <hr />
-<div *ngIf="isError" class="alert alert-danger">
+<div
+  *ngIf="isError"
+  class="alert alert-danger animate__animated animate__bounceInDown"
+>
   No se encontro nada con el termino {{ termino }}
 </div>
 <div *ngIf="paises.length > 0" class="row">

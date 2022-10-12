@@ -9,34 +9,33 @@ import { Country } from '../interfaces/pais.interface';
 })
 export class PaisService {
   private BASE_URL: string = 'https://restcountries.com/v2';
-  // private filters: string = 'fields=name,capital,alpha2Code,flag,population';
+  private get httpParams() {
+    return new HttpParams().set(
+      'fields',
+      'name,capital,alpha2Code,flag,population'
+    );
+  }
 
   constructor(private http: HttpClient) {}
 
   buscarPais(pais: string): Observable<Country[]> {
-    const params = new HttpParams().set(
-      'fields',
-      'name,capital,alpha2Code,flag,population'
-    );
     const url = `${this.BASE_URL}/name/${pais}`;
-    return this.http.get<Country[]>(url, { params }).pipe(tap(console.log));
+    return this.http
+      .get<Country[]>(url, { params: this.httpParams })
+      .pipe(tap(console.log));
     /* .pipe(catchError((err) => of([]))); */
   }
   buscarCapital(capital: string): Observable<Country[]> {
-    const params = new HttpParams().set(
-      'fields',
-      'name,capital,alpha2Code,flag,population'
-    );
     const url = `${this.BASE_URL}/capital/${capital}`;
-    return this.http.get<Country[]>(url, { params }).pipe(tap(console.log));
+    return this.http
+      .get<Country[]>(url, { params: this.httpParams })
+      .pipe(tap(console.log));
   }
   buscarRegion(region: string): Observable<Country[]> {
-    const params = new HttpParams().set(
-      'fields',
-      'name,capital,alpha2Code,flag,population'
-    );
     const url = `${this.BASE_URL}/region/${region}`;
-    return this.http.get<Country[]>(url, { params }).pipe(tap(console.log));
+    return this.http
+      .get<Country[]>(url, { params: this.httpParams })
+      .pipe(tap(console.log));
   }
 
   getPaisPorId(id: string): Observable<Country> {
